@@ -115,7 +115,7 @@ export default function AdminDashboard() {
   };
 
   if (!user) {
-    return <div className="text-center py-12">جاري تحميل...</div>;
+    return <div className="text-center py-12">{loading ? 'جاري تحميل...' : 'جاري تحميل...'}</div>;
   }
 
   return (

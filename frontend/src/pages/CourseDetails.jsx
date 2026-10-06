@@ -17,22 +17,23 @@ export default function CourseDetails() {
     if (userData) {
       setUser(JSON.parse(userData));
     }
+
+    const fetchCourseDetails = async () => {
+      try {
+        setLoading(true);
+        const response = await courseAPI.getCourse(courseId);
+        setCourse(response.data.data);
+        setError(null);
+      } catch (err) {
+        setError('خطأ في تحميل تفاصيل الدورة');
+        console.error(err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
     fetchCourseDetails();
   }, [courseId]);
-
-  const fetchCourseDetails = async () => {
-    try {
-      setLoading(true);
-      const response = await courseAPI.getCourse(courseId);
-      setCourse(response.data.data);
-      setError(null);
-    } catch (err) {
-      setError('خطأ في تحميل تفاصيل الدورة');
-      console.error(err);
-    } finally {
-      setLoading(false);
-    }
-  };
 
   const handleEnroll = async () => {
     if (!user) {

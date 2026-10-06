@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import CourseCard from '../components/CourseCard';
-import { enrollmentAPI, authAPI } from '../services/api';
+import { enrollmentAPI } from '../services/api';
 
 export default function StudentDashboard() {
   const [enrollments, setEnrollments] = useState([]);

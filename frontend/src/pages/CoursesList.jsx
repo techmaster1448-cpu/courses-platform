@@ -10,22 +10,22 @@ export default function CoursesList() {
   const [error, setError] = useState(null);
 
   useEffect(() => {
+    const fetchCourses = async () => {
+      try {
+        setLoading(true);
+        const response = await courseAPI.getAllCourses(filters);
+        setCourses(response.data.data);
+        setError(null);
+      } catch (err) {
+        setError('خطأ في تحميل الدورات');
+        console.error(err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
     fetchCourses();
   }, [filters]);
-
-  const fetchCourses = async () => {
-    try {
-      setLoading(true);
-      const response = await courseAPI.getAllCourses(filters);
-      setCourses(response.data.data);
-      setError(null);
-    } catch (err) {
-      setError('خطأ في تحميل الدورات');
-      console.error(err);
-    } finally {
-      setLoading(false);
-    }
-  };
 
   const handleFilterChange = (newFilters) => {
     setFilters(newFilters);
