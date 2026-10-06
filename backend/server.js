@@ -5,6 +5,10 @@ const mongoose = require('mongoose');
 
 const app = express();
 
+// Log CORS configuration
+console.log('CORS_ORIGIN from env:', process.env.CORS_ORIGIN);
+console.log('Using CORS origin:', process.env.CORS_ORIGIN || 'http://localhost:3000');
+
 // Middleware
 app.use(cors({
   origin: process.env.CORS_ORIGIN || 'http://localhost:3000',
